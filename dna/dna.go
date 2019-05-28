@@ -4,21 +4,19 @@ package dna
 // return the counts of A, C, G, T in that string.
 
 import (
-	"fmt"
+	"strconv"
 	"strings"
-
-	rosalib "github.com/HarryMWinters/rosalind/lib"
 )
 
-// DNA Counts the numbers of each nucleotide in a sequence.
-func DNA() {
-	data := rosalib.NaiveOpen("rosalind_dna (1).txt")
+type algorithm struct{}
 
-	var numA, numC, numG, numT int
+// Execute Counts the numbers of each nucleotide in a sequence.
+func (a algorithm) Execute(data []byte) ([]byte, error) {
 	sequence := strings.ToUpper(string(data))
-	numA = strings.Count(sequence, "A")
-	numC = strings.Count(sequence, "C")
-	numG = strings.Count(sequence, "G")
-	numT = strings.Count(sequence, "T")
-	fmt.Printf("%d %d %d %d\n", numA, numC, numG, numT)
+	var output string
+	output += strconv.Itoa(strings.Count(sequence, "A"))
+	output += " " + strconv.Itoa(strings.Count(sequence, "C"))
+	output += " " + strconv.Itoa(strings.Count(sequence, "G"))
+	output += " " + strconv.Itoa(strings.Count(sequence, "T"))
+	return []byte(output), nil
 }
