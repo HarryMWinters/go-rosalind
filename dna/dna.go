@@ -1,25 +1,19 @@
-package main
+package dna
 
 // Given a string of letters respresenting nucleotides,
 // return the counts of A, C, G, T in that string.
 
 import (
 	"fmt"
-	"io/ioutil"
 	"strings"
+
+	rosalib "github.com/HarryMWinters/rosalind/lib"
 )
 
-func checkError(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
+// DNA Counts the numbers of each nucleotide in a sequence.
+func DNA() {
+	data := rosalib.NaiveOpen("rosalind_dna (1).txt")
 
-func main() {
-	// TODO: This loads the entire file into memore which is resource intensive
-	// and could break with extremely large files (Genome size and larger)
-	data, err := ioutil.ReadFile("rosalind_dna (1).txt")
-	checkError(err)
 	var numA, numC, numG, numT int
 	sequence := strings.ToUpper(string(data))
 	numA = strings.Count(sequence, "A")
