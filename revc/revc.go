@@ -14,16 +14,18 @@ func checkError(e error) {
 }
 
 func stringReverse(s string) string {
-	panic("String reverse not implemented!")
+	reversed := []rune(s)
+	for i, j := 0, len(reversed)-1; i < j; i, j = i+1, j-1 {
+		reversed[i], reversed[j] = reversed[j], reversed[i]
+	}
+	return string(reversed)
 }
 
 func main() {
-	data, err := ioutil.ReadFile("rosalind_revc (1).txt")
+	data, err := ioutil.ReadFile("rosalind_revc (2).txt")
 	checkError(err)
-	//sequence := string(data)
 	var reverseComplement string
 	for i := 0; i < len(data); i++ {
-		fmt.Println(string(data[i]))
 		switch string(data[i]) {
 		case "A":
 			reverseComplement += "T"
@@ -34,7 +36,6 @@ func main() {
 		case "G":
 			reverseComplement += "C"
 		case "\n":
-			reverseComplement += "\n"
 		default:
 			panic("Unsupported character detected.")
 		}
